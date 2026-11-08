@@ -29,9 +29,10 @@ The datasheet only gives the slave address and the bus protocol. It does **not**
 
 ## The hardware change
 
-- Pin 23 is a bare pad/pin on this module. Nothing on the board pulls it to GND. Solder a thin wire from the pin (or its nearest pad) to a GND point (for example a ground pad or the `B-` pad). This is a micro-soldering job on a QFN pin: see the macro photos.
+- Pin 23 is a bare pad/pin on this module. Nothing on the board pulls it to GND. Solder a thin wire from the pin (or its nearest pad) to the **main ground**. This is a micro-soldering job on a QFN pin: see the macro photos.
+- **Important: do NOT use the `B-` pad as ground.** `B-` is separated from the main ground on this board: a multimeter shows no continuity between `B-` and the main ground while the chip is unpowered. Owner's assumption (not verified): the chip switches the battery negative through a protection path (MOSFET and current sense) when it is active, so `B-` only connects to ground while the chip is running. Measure continuity from a known ground point (for example the shield of a USB connector or the ground pins of the USB ports) to your chosen ground before soldering.
 - Only then are the LED pads (pin 25 and 26) an I2C bus. Without the wire the pads stay LED drivers and show slow low pulses and noise (this is what a logic analyser sees before the change).
-- Share ground between the module and the master.
+- Share the **main ground** (not `B-`) between the module and the master.
 
 ## Photos: where and how to connect
 
